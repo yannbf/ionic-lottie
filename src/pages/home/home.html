@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+  <ion-segment [(ngModel)]="selectedAnimation" color="danger" (ionChange)="changeAnimations()">
+    <ion-segment-button value="lottie" selected="true">
+      Lottie
+    </ion-segment-button>
+    <ion-segment-button value="bodymovin">
+      Bodymovin
+    </ion-segment-button>
+    <ion-segment-button value="other">
+      Other
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <lottie-animation-view *ngFor="let option of animations" [options]="option"></lottie-animation-view>
 </ion-content>
