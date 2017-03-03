@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { bodymovin } from 'bodymovin';
 
 @Component({
   selector: 'page-home',
