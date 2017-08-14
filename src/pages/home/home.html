@@ -9,8 +9,21 @@
     <ion-segment-button value="other">
       Other
     </ion-segment-button>
+    <ion-segment-button value="interactive">
+      Interactive
+    </ion-segment-button>
   </ion-segment>
 </ion-header>
 <ion-content>
-  <lottie-animation-view *ngFor="let option of animations" [options]="option"></lottie-animation-view>
+  <section *ngIf="interactive">
+    <h3>Click!</h3>
+    <lottie-animation-view
+      *ngIf="interactive"
+      (click)="animate()"
+      (animCreated)="handleAnimation($event)"
+      [options]="animationOption"></lottie-animation-view>
+  </section>
+  <section *ngIf="!interactive">
+    <lottie-animation-view *ngFor="let option of animations" [options]="option"></lottie-animation-view>
+  </section>
 </ion-content>

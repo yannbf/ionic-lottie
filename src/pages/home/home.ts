@@ -61,7 +61,27 @@ export class HomePage {
     this.changeAnimations();
   }
 
+  interactive = false;
+  anim: any;
+
+  handleAnimation(anim) {
+    this.anim = anim;
+  }
+
+  animationOption = {
+    loop: true,
+    prerender: false,
+    autoplay: false,
+    autoloadSegments: false,
+    path: 'assets/animations/other/jake.json'
+  }
+
+  animate() {
+    this.anim.playSegments([[27, 142], [14, 26]], true);
+  }
+
   changeAnimations() {
+    this.interactive = false;
     switch (this.selectedAnimation) {
       case "lottie":
         this.animations = this.lottieAnimations;
@@ -71,6 +91,9 @@ export class HomePage {
         break;
       case "other":
         this.animations = this.otherAnimations;
+        break;
+      case "interactive":
+        this.interactive = true;
         break;
     }
   }
