@@ -17,28 +17,41 @@
 <ion-content>
   <section *ngIf="interactive">
     <div style="position: relative">
-        <button ion-button (click)="animate()"
-                no-margin
-                full style="position: absolute; right: 0; top: 0;">
-          Click here to play segmented animation
-        </button>
-        <lottie-animation-view
-          *ngIf="interactive"
-          (animCreated)="handleAnimation($event)"
-          [options]="interactiveAnimationOption"></lottie-animation-view>
+      <button ion-button (click)="animate()"
+              no-margin
+              full style="position: absolute; right: 0; top: 0;">
+        Click here to play segmented animation
+      </button>
+      <lottie-animation-view
+        *ngIf="interactive"
+        (animCreated)="handleAnimation($event)"
+        [options]="interactiveAnimationOption"></lottie-animation-view>
     </div>
 
-      <ion-row align="center">
-        <ion-col col-4>
-          <button (click)="stop()" ion-button clear icon-only><ion-icon name="square"></ion-icon></button>
-        </ion-col>
-        <ion-col col-4>
-          <button (click)="pause()" ion-button clear icon-only><ion-icon name="pause"></ion-icon></button>
-        </ion-col>
-        <ion-col col-4>
-          <button (click)="play()" ion-button clear icon-only><ion-icon name="play"></ion-icon></button>
-        </ion-col>
-      </ion-row>
+    <ion-row align="center">
+      <ion-col col-4>
+        <button (click)="stop()" ion-button clear icon-only><ion-icon name="square"></ion-icon></button>
+      </ion-col>
+      <ion-col col-4>
+        <button (click)="pause()" ion-button clear icon-only><ion-icon name="pause"></ion-icon></button>
+      </ion-col>
+      <ion-col col-4>
+        <button (click)="play()" ion-button clear icon-only><ion-icon name="play"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-10>
+        <ion-item>
+          <ion-range min="0" max="5" pin (ionChange)="setSpeed()" [(ngModel)]="animationSpeed">
+            <ion-label range-left>0</ion-label>
+            <ion-label range-right>5</ion-label>
+          </ion-range>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 align-self-center>
+        <h3 text-center>{{animationSpeed}}x</h3>
+      </ion-col>
+    </ion-row>
   </section>
   <section *ngIf="!interactive">
     <ion-grid>

@@ -82,9 +82,8 @@ export class HomePage {
       this.anim.pause();
   }
 
-  setSpeed(speed: number) {
-      this.animationSpeed = speed;
-      this.anim.setSpeed(speed);
+  setSpeed() {
+      this.anim.setSpeed(this.animationSpeed);
   }
 
   animate() {
