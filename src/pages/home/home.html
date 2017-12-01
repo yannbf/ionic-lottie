@@ -1,6 +1,9 @@
 <ion-header>
   <ion-segment [(ngModel)]="selectedAnimation" color="danger" (ionChange)="changeAnimations()">
-    <ion-segment-button value="lottie" selected="true">
+    <ion-segment-button value="interactive" selected="true">
+      Interactive
+    </ion-segment-button>
+    <ion-segment-button value="lottie">
       Lottie
     </ion-segment-button>
     <ion-segment-button value="bodymovin">
@@ -9,21 +12,41 @@
     <ion-segment-button value="other">
       Other
     </ion-segment-button>
-    <ion-segment-button value="interactive">
-      Interactive
-    </ion-segment-button>
   </ion-segment>
 </ion-header>
 <ion-content>
   <section *ngIf="interactive">
-    <h3>Click!</h3>
-    <lottie-animation-view
-      *ngIf="interactive"
-      (click)="animate()"
-      (animCreated)="handleAnimation($event)"
-      [options]="animationOption"></lottie-animation-view>
+    <div style="position: relative">
+        <button ion-button (click)="animate()"
+                no-margin
+                full style="position: absolute; right: 0; top: 0;">
+          Click here to play segmented animation
+        </button>
+        <lottie-animation-view
+          *ngIf="interactive"
+          (animCreated)="handleAnimation($event)"
+          [options]="interactiveAnimationOption"></lottie-animation-view>
+    </div>
+
+      <ion-row align="center">
+        <ion-col col-4>
+          <button (click)="stop()" ion-button clear icon-only><ion-icon name="square"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <button (click)="pause()" ion-button clear icon-only><ion-icon name="pause"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <button (click)="play()" ion-button clear icon-only><ion-icon name="play"></ion-icon></button>
+        </ion-col>
+      </ion-row>
   </section>
   <section *ngIf="!interactive">
-    <lottie-animation-view *ngFor="let option of animations" [options]="option"></lottie-animation-view>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-6 col-lg-4 *ngFor="let option of animations">
+          <lottie-animation-view [options]="option"></lottie-animation-view>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </section>
 </ion-content>

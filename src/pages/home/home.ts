@@ -8,8 +8,19 @@ import { NavController, IonicPage } from 'ionic-angular';
 })
 export class HomePage {
 
-  selectedAnimation: any = "lottie";
+  selectedAnimation: any = "interactive";
   animations: any;
+  interactive = false;
+  anim: any;
+  animationSpeed: number = 1;
+
+  interactiveAnimationOption = {
+    loop: true,
+    prerender: false,
+    autoplay: false,
+    autoloadSegments: false,
+    path: 'assets/animations/other/jake.json'
+  }
 
   lottieAnimations = [
     {
@@ -21,8 +32,6 @@ export class HomePage {
     }, {
       path: 'assets/animations/lottie/LottieLogo1.json'
     }, {
-      path: 'assets/animations/lottie/MotionCorpse-Jrcanest.json'
-    }, {
       path: 'assets/animations/lottie/LottieWalkthrough.json'
     }, {
       path: 'assets/animations/lottie/LottieLogo2.json'
@@ -33,8 +42,6 @@ export class HomePage {
 
   bodymovinAnimations = [
     {
-      path: 'assets/animations/bodymovin/bodymovin.json'
-    }, {
       path: 'assets/animations/bodymovin/gatin.json'
     }, {
       path: 'assets/animations/bodymovin/adrock.json'
@@ -42,18 +49,16 @@ export class HomePage {
       path: 'assets/animations/bodymovin/happy2016.json'
     }, {
       path: 'assets/animations/bodymovin/navidad.json'
-    }
+    }, {
+      path: 'assets/animations/bodymovin/bodymovin.json'
+    },
   ]
 
   otherAnimations = [
     {
-      path: 'assets/animations/other/jake.json'
-    }, {
       path: 'assets/animations/other/tibetan-monk.json'
     }, {
       path: 'assets/animations/other/bobber.json'
-    }, {
-      path: 'assets/animations/other/weather-change.json'
     }
   ]
 
@@ -61,19 +66,25 @@ export class HomePage {
     this.changeAnimations();
   }
 
-  interactive = false;
-  anim: any;
-
   handleAnimation(anim) {
     this.anim = anim;
   }
 
-  animationOption = {
-    loop: true,
-    prerender: false,
-    autoplay: false,
-    autoloadSegments: false,
-    path: 'assets/animations/other/jake.json'
+  stop() {
+      this.anim.stop();
+  }
+
+  play() {
+      this.anim.play();
+  }
+
+  pause() {
+      this.anim.pause();
+  }
+
+  setSpeed(speed: number) {
+      this.animationSpeed = speed;
+      this.anim.setSpeed(speed);
   }
 
   animate() {
